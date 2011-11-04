@@ -8,6 +8,7 @@
 
 local pairs = pairs
 local string = string
+local type = type
 
 local awful = require('awful')
 
@@ -54,4 +55,17 @@ function title(c)
     s = s:gsub('[%s+_-]', ' ')
     s = s:gsub('%s%l', string.upper)
     return s
+end
+
+function create_launcher(command, notify)
+    local notify = notify or false
+    local f = function(...)
+        local t = {...}
+        local s = " "
+        for _, v in pairs(t) do
+            if type(v) == 'string' then s = s .. v end
+        end
+        awful.util.spawn(command .. s, notify)
+    end
+    return f
 end
