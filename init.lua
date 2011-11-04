@@ -7,6 +7,8 @@
 --
 
 local ipairs = ipairs
+local pairs = pairs
+local table = table
 
 local awful = require('awful')
 
@@ -43,4 +45,18 @@ end
 
 function screen.prev(s)
     return awful.util.cycle(capi.screen.count(), screen.selected(s) - 1)
+end
+
+string = {}
+
+function string.join(sep, ...)
+    return table.concat({...}, sep)
+end
+
+path = {
+    sep = '/'
+}
+
+function path.join(...)
+    return string.join(path.sep, ...)
 end
