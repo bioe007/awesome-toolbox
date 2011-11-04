@@ -8,6 +8,7 @@
 
 local ipairs = ipairs
 local pairs = pairs
+local print = print
 local table = table
 
 local awful = require('awful')
@@ -59,4 +60,8 @@ path = {
 
 function path.join(...)
     return string.join(path.sep, ...)
+end
+
+local function debug(...)
+    print(string.join(...))
 end
